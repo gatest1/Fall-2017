@@ -1,0 +1,55 @@
+//This is for the Head//
+polySphere -r 2.75 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 16 0 ;
+polySoftEdge -a 180 -ch 1 pSphere1 ;
+select -r pSphere1.f[79] ;
+select -tgl pSphere1.f[73] ;
+PolyExtrude ;
+hilite pSphere1.f[73] pSphere1.f[79] ;
+selectMode -component ;
+select -r pSphere1.f[73] pSphere1.f[79] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx -1.192092896e-007 -pvy 18.42010117 -pvz -0.4750509078 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pSphere1.f[73] pSphere1.f[79] ;
+setAttr "polyExtrudeFace1.localTranslate" -type double3 0 0 8 ;
+
+//This is for the body//
+polySphere -r 3.5 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1 ;
+move -r 0 8 0 ;
+polySoftEdge -a 180 -ch 1 pSphere2 ;
+select -r pSphere2.vtx[91] ;
+select `ls -sl`;PolySelectTraverse 1;select `ls -sl`;
+move -r 0 2.5 0 ;
+hilite -r pSphere2 ;
+select -r pSphere2.f[8] ;
+select -tgl pSphere2.f[4] ;
+PolyExtrude;
+hilite pSphere2.f[4] pSphere2.f[8] ;
+selectMode -component ;
+select -r pSphere2.f[4] pSphere2.f[8] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx -1.192092896e-007 -pvy 4.91987133 -pvz 0.6046102643 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pSphere2.f[4] pSphere2.f[8] ;
+move -r 0 -3.722179 0 ;
+select -cl  ;
+select -r pSphere2.f[4] ;
+select -tgl pSphere2.f[8] ;
+scale -r -p -1.19209e-007cm 1.197692cm 0.60461cm 1 1e-005 1 ;
+move -r 0 -0.344807 0 ;
+
+//This is the right foot//
+polySphere -r 1 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+scale -r 1 1 2.863697 ;
+move -1.434144 1.02813 1.665819 ;
+polySoftEdge -a 180 -ch 1 pSphere3 ;
+select -r pSphere3.vtx[0:39] pSphere3.vtx[90] ;
+scale -r -p -1.434144cm 0.373622cm 1.665819cm 1 1e-005 1 ;
+
+//This is the left foot//
+polySphere -r 1 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+scale -r 1 1 2.863697 ;
+move -r 1.434144 1.02813 1.665819 ;
+polySoftEdge -a 180 -ch 1 pSphere4 ;
+select -r pSphere4.vtx[0:39] pSphere4.vtx[90] ;
+scale -r -p 1.434144cm 0.373622cm 1.665819cm 1 1e-005 1 ;
+
+//This is the tail//
+polySphere -r 1 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1 ;
+move 0 7.611839 -3.639939 ;
+polySoftEdge -a 180 -ch 1 pSphere5 ;
