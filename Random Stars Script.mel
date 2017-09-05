@@ -1,0 +1,15 @@
+proc SpiralStars(int $numStars, float $rotation) {
+string $sels [] = `ls -sl`;
+string $sel = $sels[0];
+
+
+for($i=0; $i<$numStars; $i++)
+{
+    string $newSel [];
+    $newSel = `duplicate -rr $sel` ;
+    $sel = $newSel [0];
+    move -r -os -wd 0 0.95 0 $newSel [0];
+    rotate -r -os -fo 0 $rotation 0 $newSel [0];
+}
+}
+SpiralStars(20, 25);
