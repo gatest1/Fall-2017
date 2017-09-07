@@ -1,15 +1,19 @@
-proc SpiralStars(int $numStars, float $rotation) {
-string $sels [] = `ls -sl`;
-string $sel = $sels[0];
-
-
-for($i=0; $i<$numStars; $i++)
-{
-    string $newSel [];
-    $newSel = `duplicate -rr $sel` ;
-    $sel = $newSel [0];
-    move -r -os -wd 0 0.95 0 $newSel [0];
-    rotate -r -os -fo 0 $rotation 0 $newSel [0];
+proc Randomize(int $num, int $xRange, int $yRange, int $zRange) {
+    string $sels[] = `ls -sl` ;
+    
+    for ($i=0; $i<size($sels); $i++) {
+        
+        for ($j=0; $j<$num; $j++) {
+            float $xPos = `rand ($xRange*-1) $xRange` ;
+            float $yPos = `rand ($yRange*-1) $yRange` ;
+            float $zPos = `rand ($zRange*-1) $zRange` ;
+            
+           string $obj[] = `duplicate -rr $sels[$i]` ;
+           move $xPos $yPos $zPos $obj[0] ;
+           rotate `rand 360` `rand 360` `rand 360` $obj[0] ;
+          
+        }
+    }  
 }
-}
-SpiralStars(20, 25);
+
+Randomize (50, 50, 50, 50);
