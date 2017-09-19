@@ -1,39 +1,14 @@
-SelectHierarchy;
-string $theJoints[] = `ls -sl`;
-int $theArraySize = size($theJoints);
-for ( $i = 0 ; $i < $theArraySize; $i++ )
-{
-    $theCircleName = $theJoints[$i] + "_CTRL";
-    circle -n $theCircleName;
-    $theCircle = `ls -sl`;
-    $theGroupName = $theJoints[$i] + "_GRP";
-    group -n $theGroupName; 
-    $theGroup = `ls -sl`;
-    select $theJoints[$i];
-    $theTransForm = `xform -q -t -ws`;
-    select $theGroup;
-    if($i>0){
-        $theParent = `listRelatives - p $theJoints[$i]`;
-        print ($theParent[0]);
-        $thePrevCircle = $theParent[0] + "_CTRL";
-        select -tgl $thePrevCircle;
-        parent; 
-    }      
-    $theJointOrientaion = $theJoints[$i] + ".jointOrient";
-    $theGroupRotation = $theJoints[$i] + "_GRP.rotate";
-    connectAttr $theJointOrientaion $theGroupRotation;
-   
-    $theCircleRotation = $theJoints[$i] + "_CTRL.rotate";
-    $theJointRotation = $theJoints[$i] + ".rotate";
-    connectAttr $theCircleRotation $theJointRotation;
+string $sels[] = `ls -sl`;
+for ($sel in $sels) {
+    setAttr ($sel + ".translateY") 0;
+    setAttr ($sel + ".translateZ") 0;
     
-    select $theGroup;
-    move -rpr $theTransForm[0] $theTransForm[1] $theTransForm[2];
-    makeIdentity -apply true -t 1;
+    setAttr ($sel + ".jointOrientX") 0;
+     setAttr ($sel + ".jointOrientY") 0;
+
 }
 
-///Updated Version
-
+//
 SelectHierarchy;
 string $theJoints[] = `ls -sl`;
 int $theArraySize = size($theJoints);
