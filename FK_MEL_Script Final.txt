@@ -1,0 +1,25 @@
+SelectHierarchy;
+string $theJoints[] = `ls -sl`;
+int $theArraySize = size($theJoints);
+for ( $i = 0 ; $i < $theArraySize; $i++ )
+{
+    $theCircleName = $theJoints[$i] + "_CTRL";
+    circle -n $theCircleName;
+    $theCircle = `ls -sl`;
+    string $theGroupName = $theJoints[$i] + "_GRP";
+    group -n $theGroupName; 
+    $theGroup = `ls -sl`;
+    select $theJoints[$i];
+   matchTransform $theGroupName $theJoints[$i];
+   
+    select $theGroup;
+    if($i>0){
+        $theParent = `listRelatives - p $theJoints[$i]`;
+             $thePrevCircle = $theParent[0] + "_CTRL";
+        select -tgl $thePrevCircle;
+        parent; 
+    }      
+    parentConstraint $theCircleName $theJoints[$i];
+    scaleConstraint -sc off $theCircleName $theJoints[$i];
+    
+}
