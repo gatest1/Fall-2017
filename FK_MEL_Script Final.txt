@@ -24,25 +24,4 @@ for ( $i = 0 ; $i < $theArraySize; $i++ )
     
 }
 
-//New Script
 
-global proc ControlWindow {
-
-string $window = "ctrlWindow";
-
-if(`window -exists $window` == true)
-deleteUI -window $window;
-
-$window = `window -title "Hello World Again!" $window`;
-columnLayout;
-button;
-button;
-button;
-
-
-
-showWindow();
-}
-
-proc CreateControl (string $type) {
-	//types: circle, square, cube, sphere
