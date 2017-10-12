@@ -1,0 +1,9 @@
+polySphere -r 1.25 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 8.5 0;
+polySoftEdge -a 180 -ch 1 pSphere1;
+polySphere -r 2 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 6 0;
+polySoftEdge -a 180 -ch 1 pSphere2;
+polySphere -r 3 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 2.5 0;
+polySoftEdge -a 180 -ch 1 pSphere3;
