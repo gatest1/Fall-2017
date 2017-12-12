@@ -1,3 +1,4 @@
+# This is the official Broken FK Script!
 import maya.cmds as cmds
 
 cmds.SelectHierarchy()
